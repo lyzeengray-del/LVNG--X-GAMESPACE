@@ -42,7 +42,6 @@ class FloatingPanelService : Service() {
     private var fpsTracker: RealTimeFpsTracker? = null
     private val uiHandler = Handler(Looper.getMainLooper())
 
-    // Colors matching LVNG-X dark navy + crimson red aesthetic
     private val colNavyDark = Color.parseColor("#EE0B172E")
     private val colNavyCard = Color.parseColor("#FF112244")
     private val colCrimson = Color.parseColor("#FFE91E5A")
@@ -203,7 +202,6 @@ class FloatingPanelService : Service() {
             setPadding(dp(14), dp(12), dp(14), dp(14))
         }
 
-        // Top Bar: Logo + Title + FPS + Close
         val header = LinearLayout(this).apply {
             orientation = LinearLayout.HORIZONTAL
             gravity = Gravity.CENTER_VERTICAL
@@ -245,7 +243,6 @@ class FloatingPanelService : Service() {
         header.addView(closeBtn)
         root.addView(header)
 
-        // RAM & Performance Status Bar
         val (usedRam, totalRam) = PerformanceBooster.getRamStats(this)
         val statusInfo = TextView(this).apply {
             text = "RAM: ${usedRam}MB / ${totalRam}MB • Mode: ${GameSpaceStore.getPerfMode(this@FloatingPanelService).title}"
@@ -255,7 +252,6 @@ class FloatingPanelService : Service() {
         }
         root.addView(statusInfo)
 
-        // Row 1: Quick Action Tiles (Performance Boost | Audio FX | Crosshair)
         val row1 = LinearLayout(this).apply {
             orientation = LinearLayout.HORIZONTAL
             gravity = Gravity.CENTER
@@ -294,7 +290,6 @@ class FloatingPanelService : Service() {
 
         root.addView(spaceView(dp(10)))
 
-        // Macro Sub-Card (Direct Start/Stop Macro In-Game!)
         val macroCard = LinearLayout(this).apply {
             orientation = LinearLayout.VERTICAL
             background = roundedBg(colNavyCard, Color.parseColor("#FF1E3A6E"), 12f, 2)
@@ -337,7 +332,6 @@ class FloatingPanelService : Service() {
                         val loadedSteps = GameSpaceStore.getMacroSteps(this@FloatingPanelService)
                         val rep = GameSpaceStore.getMacroRepeat(this@FloatingPanelService)
                         val loop = GameSpaceStore.isMacroLoop(this@FloatingPanelService)
-                        // Hide panel briefly so macro taps hit the game underneath cleanly
                         closeMainPanel()
                         uiHandler.postDelayed({
                             MacroRunner.play(this@FloatingPanelService, loadedSteps, rep, loop)
@@ -370,7 +364,6 @@ class FloatingPanelService : Service() {
 
         root.addView(spaceView(dp(10)))
 
-        // Bottom Row: Open Full App | Exit Overlay
         val footerRow = LinearLayout(this).apply {
             orientation = LinearLayout.HORIZONTAL
         }
@@ -505,8 +498,7 @@ class FloatingPanelService : Service() {
         }
 
         val label = TextView(this).apply {
-            text = "🎯 Geser ke tombol game
-Lalu klik SIMPAN TITIK"
+            text = "🎯 Geser ke tombol game\nLalu klik SIMPAN TITIK"
             setTextColor(Color.WHITE)
             textSize = 11f
             gravity = Gravity.CENTER
