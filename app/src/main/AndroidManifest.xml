@@ -34,7 +34,7 @@
             android:foregroundServiceType="specialUse">
             <property
                 android:name="android.app.PROPERTY_SPECIAL_USE_FGS_SUBTYPE"
-                android:value="LVNG-X In-Game Floating Control Panel, FPS Monitor, Crosshair & Macro Overlay"/>
+                android:value="LVNG-X In-Game Floating Control Panel, FPS Monitor, Crosshair &amp; Macro Overlay"/>
         </service>
 
         <service
